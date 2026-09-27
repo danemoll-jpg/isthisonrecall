@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Is This On Recall?</title>
+  <meta name="description" content="Snap a photo of a product to check U.S. recall databases.">
+  <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16181c" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Recall Check">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Is This On Recall?</h1>
+      <p class="sub">Take a photo of any product — food, toys, baby gear, medicine, appliances — and we'll check the government recall lists.</p>
+    </header>
+
+    <section id="start">
+      <label class="camera-btn" for="photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4.5 7.6 6.5H5A2.5 2.5 0 0 0 2.5 9v9A2.5 2.5 0 0 0 5 20.5h14a2.5 2.5 0 0 0 2.5-2.5V9A2.5 2.5 0 0 0 19 6.5h-2.6L15 4.5H9Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+        <span>Take a photo</span>
+      </label>
+      <input id="photo" type="file" accept="image/*" capture="environment" hidden>
+      <label class="library-link" for="library">or choose from your photos</label>
+      <input id="library" type="file" accept="image/*" hidden>
+
+      <form id="text-search" class="text-search" autocomplete="off">
+        <input id="query" type="search" enterkeyhint="search" placeholder="…or type a product name" aria-label="Product name">
+        <button type="submit">Search</button>
+      </form>
+      <p class="tip">Tip: get the brand name and label in the shot. A second photo of the lot code or model number helps confirm a match.</p>
+    </section>
+
+    <section id="work" hidden>
+      <div class="item-card">
+        <img id="preview" alt="" hidden>
+        <div class="item-info">
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+          <div id="product" hidden>
+            <div class="label">Looks like</div>
+            <div id="product-name" class="product-name"></div>
+            <div id="product-meta" class="product-meta"></div>
+            <button id="edit-btn" class="link-btn" type="button">Not right? Change it</button>
+            <form id="edit-form" class="text-search" hidden autocomplete="off">
+              <input id="edit-query" type="search" enterkeyhint="search" aria-label="Product name">
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="verdict" class="verdict" hidden></div>
+      <div id="check" class="check" hidden></div>
+      <div id="recalls" class="recalls"></div>
+      <p id="footnote" class="footnote" hidden></p>
+
+      <button id="again" class="secondary-btn" type="button" hidden>Check another item</button>
+    </section>
+
+    <footer>
+      Searches CPSC, FDA, USDA and NHTSA. Always confirm against the official notice before throwing anything away.
+    </footer>
+  </main>
+
+  <dialog id="passcode-dialog">
+    <form method="dialog" id="passcode-form">
+      <h2>Enter passcode</h2>
+      <p>This app is private. Enter the passcode you were given.</p>
+      <input id="passcode" type="password" autocomplete="current-password" required>
+      <button type="submit">Continue</button>
+    </form>
+  </dialog>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

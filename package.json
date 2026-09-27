@@ -1,0 +1,18 @@
+{
+  "name": "isthisonrecall",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Snap a photo of a product and check U.S. recall databases.",
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env dev-server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0",
+    "zod": "^4.6.5"
+  }
+}
