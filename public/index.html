@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Is This On Recall?</title>
-  <meta name="description" content="Snap a photo of a product to check U.S. recall databases.">
+  <meta name="description" content="Snap a photo of a food product to check FDA and USDA recalls.">
   <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#16181c" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Recall Check">
+  <meta name="apple-mobile-web-app-title" content="Food Recalls">
   <link rel="apple-touch-icon" href="icon-180.png">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
@@ -20,7 +20,7 @@
   <main>
     <header>
       <h1>Is This On Recall?</h1>
-      <p class="sub">Take a photo of any product — food, toys, baby gear, medicine, appliances — and we'll check the government recall lists.</p>
+      <p class="sub">Take a photo of any food in your kitchen or cart. We'll check it against the FDA and USDA food recall lists.</p>
     </header>
 
     <section id="start">
@@ -33,10 +33,10 @@
       <input id="library" type="file" accept="image/*" hidden>
 
       <form id="text-search" class="text-search" autocomplete="off">
-        <input id="query" type="search" enterkeyhint="search" placeholder="…or type a product name" aria-label="Product name">
+        <input id="query" type="search" enterkeyhint="search" placeholder="…or type a food or barcode number" aria-label="Food name or barcode number">
         <button type="submit">Search</button>
       </form>
-      <p class="tip">Tip: get the brand name and label in the shot. A second photo of the lot code or model number helps confirm a match.</p>
+      <p class="tip">Tip: get the brand and product name in the shot. If there's a recall, a photo of the lot code, best-by date or barcode helps confirm whether yours is affected.</p>
     </section>
 
     <section id="work" hidden>
@@ -66,7 +66,7 @@
     </section>
 
     <footer>
-      Searches CPSC, FDA, USDA and NHTSA. Always confirm against the official notice before throwing anything away.
+      Searches FDA and USDA food recalls, including brand-new FDA announcements. Always confirm against the official notice.
     </footer>
   </main>
 

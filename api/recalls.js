@@ -15,7 +15,8 @@ export async function POST(request) {
     product = {
       name: q,
       brand: "",
-      category: "other",
+      category: "food",
+      upc: /^\d[\d\s-]{7,20}$/.test(q) ? q : "",
       codes_visible: "",
       search_terms: [q, ...(words.length > 2 ? [words.slice(0, 2).join(" ")] : [])],
     };

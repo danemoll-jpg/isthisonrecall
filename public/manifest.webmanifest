@@ -1,6 +1,6 @@
 {
   "name": "Is This On Recall?",
-  "short_name": "Recall Check",
+  "short_name": "Food Recalls",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f6f4ef",

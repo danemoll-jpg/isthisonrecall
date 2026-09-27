@@ -1,7 +1,7 @@
 const $ = (id) => document.getElementById(id);
 
 const MAX_EDGE = 1568; // plenty for reading labels, keeps uploads small
-const SOURCES_LABEL = "CPSC, FDA, USDA and NHTSA";
+const SOURCES_LABEL = "FDA and USDA food recalls";
 
 // ---------------------------------------------------------------------------
 // Passcode (only used if the server has APP_PASSCODE set)
@@ -105,7 +105,7 @@ function reset() {
 function showProduct(p) {
   $("product").hidden = false;
   $("product-name").textContent = p.name || "Unknown item";
-  $("product-meta").textContent = [p.brand, p.model_or_variety, p.codes_visible && `Codes: ${p.codes_visible}`]
+  $("product-meta").textContent = [p.brand, p.model_or_variety, p.upc && `UPC ${p.upc}`, p.codes_visible && `Codes: ${p.codes_visible}`]
     .filter(Boolean).join(" · ");
   const name = p.name || "";
   $("edit-query").value = p.brand && !name.toLowerCase().includes(p.brand.toLowerCase()) ? `${p.brand} ${name}` : name;
@@ -184,7 +184,7 @@ async function checkPhoto(file) {
 
     const product = await api("/api/identify", { image });
     if (!product.found_product) {
-      setStatus(product.notes || "Couldn't find a product in that photo. Try again closer to the label.", { busy: false, error: true });
+      setStatus(product.notes || "Couldn't find a food product in that photo. Try again closer to the label.", { busy: false, error: true });
       $("product").hidden = false;
       $("product-name").textContent = "No product recognized";
       $("edit-form").hidden = false;
@@ -194,6 +194,11 @@ async function checkPhoto(file) {
     }
     showProduct(product);
     $("edit-btn").hidden = false;
+    if (product.category === "not_food") {
+      setStatus("This doesn't look like food. This app checks food recalls only. If it is food, tap “Not right? Change it” and type its name.", { busy: false, error: true });
+      $("again").hidden = false;
+      return;
+    }
     await runSearch({ product }, product);
   } catch (err) {
     setStatus(err.message, { busy: false, error: true });
